@@ -10,7 +10,7 @@ permissions:
 jobs:
   scan-pull-request:
     environment: frogbot
-    runs-on: ubuntu-24.04
+    runs-on: ip-172-18-98-35
     # A pull request needs to be approved, before Frogbot scans it. Any GitHub user who is associated with the
     # "frogbot" GitHub environment can approve the pull request to be scanned.
     steps:
@@ -23,7 +23,7 @@ jobs:
 
       - uses: jfrog/frogbot@v2
         with:
-          oidc-provider-name: 'sumanthsvjfrog/worksafenpm-demo@github'
+          oidc-provider-name: 'sumanthsv-jfrog/worksafenpm-demo@github'
       
         env:
           # [Mandatory]
