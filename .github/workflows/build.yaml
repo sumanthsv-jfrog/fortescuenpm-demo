@@ -47,7 +47,7 @@ jobs:
          run: jf audit --watches sumtest-sec-malicious --fail=false
  
        - name: Install Dependencies
-         run: jf npm install --build-name=${{env.BUILD_NAME}} --build-number=${{env.BUILD_ID}}
+         run: jf npm install --build-name=${{env.BUILD_NAME}} --build-number=${{env.BUILD_ID}} --project=sumtest
          
        - name: Publish
          run: jf npm publish --build-name=${{env.BUILD_NAME}} --build-number=${{env.BUILD_ID}} --project=sumtest
