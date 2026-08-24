@@ -1,4 +1,4 @@
-FROM psblr.jfrog.io/worksafeperm-docker-virtual/node:20-alpine
+FROM artifactory-staging.fortescue.com/sumtest-docker-virtual2/node:20-alpine
 
 WORKDIR /app
 
