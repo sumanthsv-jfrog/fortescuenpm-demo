@@ -10,10 +10,9 @@ permissions:
 jobs:
   scan-pull-request:
     environment: frogbot
-    runs-on: self-hosted
+    runs-on: ${{ format('codebuild-fdx-shared-gh-runners-amd-{0}-{1}-{2}', github.repository_owner, github.run_id, github.run_attempt) }}
     
-    env:
-      JFROG_CLI_ANALYZER_MANAGER_VERSION: "1.43.0"
+
       
     # A pull request needs to be approved, before Frogbot scans it. Any GitHub user who is associated with the
     # "frogbot" GitHub environment can approve the pull request to be scanned.
@@ -27,19 +26,20 @@ jobs:
 
       - uses: jfrog/frogbot@v2
         with:
-          oidc-provider-name: 'sumanthsv-jfrog/worksafenpm-demo@github'
+          oidc-provider-name: 'artifactory-staging'
+          oidc-audience:  'fortescue-github-oidc'
       
         env:
           # [Mandatory]
           # JFrog platform URL
-          JF_URL: https://psblr.jfrog.io/
+          JF_URL: https://artifactory-staging.fortescue.com
           JFROG_CLI_LOG_LEVEL: DEBUG
 
           # [Mandatory if JF_USER and JF_PASSWORD are not provided]
           # JFrog access token with 'read' permissions on Xray service
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+          #JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
           # [Mandatory]
           # The GitHub token automatically generated for the job
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #  JF_WATCHES: "worksafeperm-high-sec-local"
+          JF_WATCHES: "sumtest-sec-malicious"
