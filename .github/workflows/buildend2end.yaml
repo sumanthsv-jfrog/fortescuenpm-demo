@@ -26,6 +26,9 @@ jobs:
       DOCKER_REPO: "sumtest-docker-virtual2"
       IMAGE_NAME: "fortescue-test-dockerbuild"
       IMAGE_TAG: "${{github.run_number}}"
+     defaults:
+       run:
+         working-directory: NPM
 
      steps:
        - name: Checkout
